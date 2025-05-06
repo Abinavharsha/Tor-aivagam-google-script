@@ -1,0 +1,38 @@
+Script Overview
+This Python script automates the process of performing Google searches using the Tor network to maintain anonymity. It repeatedly sends search requests to Google with randomized user-agents, languages, and other headers to avoid detection or blocking. After each request, the script requests a new IP from the Tor network to further anonymize the traffic.
+
+## Server Set up 
+##### Requirements to run the Script
+- Install Python 3 and pip
+- Install python required modules - stem, requests
+- Python3 environment
+- Installation of tor
+- Necessary permissions to run the script
+
+##### Tor installation and configuration
+First install tor
+` sudo apt install tor -y '
+
+Configuartion steps are below:
+1. Edit the Tor configuration file: ` sudo nano /etc/tor/torrc `
+2. Uncomment (or add) the following lines to enable control port access:
+```
+ControlPort 9051
+HashedControlPassword 16:HASHED_PASSWORD
+```
+3. To generate the HashedControlPassword for your script, run the following: ` tor --hash-password welcome12345 `
+[Replace welcome12345 with the password you want to use in your script, or update the password in your script to match the one generated.]
+4.Restart Tor to Apply the Changes ` sudo systemctl restart tor `
+
+##### Script Execution steps
+1. sudo systemctl restart tor , to start tor service
+2. Cd to/the/script/directory , switch to the script dir
+3. source /venv/bin/activate, enter the python environment
+4. python3 tor_script_aivagam_log_source.py ,  to run the script
+5. ctrl + c, to stop the process
+6. deactivate, to exit the python environment
+
+
+##### Script components
+1. tor_aivagam_source.txt - contains the wordlists that are set to be searched
+2. tor_script_log.txt - contains the summary of the script process
